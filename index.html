@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uptime Counter</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  .container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .red-dot {
+    width: 24px;
+    height: 24px;
+    background-color: #ff0000;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #ff0000;
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+  #timer {
+    font-size: 80px;
+    font-weight: 800;
+    letter-spacing: 2px;
+  }
+  @keyframes pulse {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.35; transform: scale(0.85); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="red-dot"></div>
+  <div id="timer">00:00:00</div>
+</div>
+<script>
+  let seconds = 0;
+  setInterval(() => {
+    seconds++;
+    let hrs = String(Math.floor(seconds / 3600)).padStart(2, '0');
+    let mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+    let secs = String(seconds % 60).padStart(2, '0');
+    document.getElementById('timer').innerText = `${hrs}:${mins}:${secs}`;
+  }, 1000);
+</script>
+</body>
+</html>
